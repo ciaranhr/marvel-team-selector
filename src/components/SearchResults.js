@@ -1,12 +1,23 @@
 import React from "react";
-import "../App.scss";
-import SearchItem from "./SearchItem";
+import "../css/SearchResults.scss";
 
-function SearchResults({ results }) {
+const handleClick = (character, setPlayer) => {
+  console.log(character.name);
+  console.log(character);
+  console.log("clicked");
+  setPlayer(character);
+}
+
+function SearchItem({ character, setPlayer } ) {
+  return <div className="search-item" onClick={() => handleClick(character, setPlayer)}>{character.name} </div>;
+}
+
+function SearchResults({ results, setPlayer }) {
+
   return (
     <div className="results-list">
       {results.map((character) => {
-        return <SearchItem character={character} key={character.id} />;
+        return <SearchItem character={character} key={character.id} setPlayer = {setPlayer} />;
       })}
     </div>
   );

@@ -72,54 +72,15 @@
 .draft {
   width: 100%;
   max-width: 500;
-  height: 800;
-  background-image: "..\soccer-pitch.png";
+  height: 800px;
+  background-image: url("../public/images/soccer-pitch.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
 }
 
-.input-wrapper {
-  background-color: white;
-  width: 90%;
-  border-radius: 100px;
-  height: 2.5rem;
-  padding: 0 15px;
-  box-shadow: 0px 0px 8px #ddd;
-  display: flex;
-  align-items: center;
-}
-
-input {
-  background-color: transparent;
-  border: none;
-  height: 100%;
-  font-size: 1.25rem;
-  width: 100%;
-  margin-left: 5px;
-}
-
-input:focus {
-  outline: none;
-}
-
-.search-item {
-  padding: 10px 20px;
-}
-
-.seach-item:hover {
-  background-color: #e2e1a9;
-}
-
-.results-list {
-  width: 100%;
-  background-color: white;
-  display: flex;
-  flex-direction: column;
-  box-shadow: 0px 0px 8px #ddd;
-  border-radius: 10px;
-  margin-top: 1rem;
-  max-height: 300px;
-  overflow-y: scroll;
+.column {
+  float: left;
+  width: 50%;
 }

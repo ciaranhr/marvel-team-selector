@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import md5 from "md5";
 import axios from "axios";
-import "../App.scss";
+import "../css/CharacterSearchBar.scss";
+
 
 function CharacterSearchBar({ setResults }) {
   const [input, setInput] = useState("");
@@ -11,6 +12,7 @@ function CharacterSearchBar({ setResults }) {
   const publicKey = "90007f0ce43678cfdb784e3113440869";
   const apiBaseURL = "https://gateway.marvel.com/v1/public";
   const limit = 30; // Number of results per request
+
 
   // Creates a URL for searching Marvel API for characters that begin with "name"
   function createURL(input) {
@@ -37,15 +39,23 @@ function CharacterSearchBar({ setResults }) {
     fetchData();
   }
 
+  function clearResults() {
+    setInput("");
+    setResults([]);
+  }
+
+
   const fetchData = async () => {
-    try {
-      const response = await axios.get(createURL(input));
-      const newCharacters = response.data.data.results;
-      setResults(newCharacters);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
+    if (input !== "") {
+      try {
+        const response = await axios.get(createURL(input));
+        const newCharacters = response.data.data.results;
+        setResults(newCharacters);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+  }
 
   return (
     <form onSubmit={handleSubmit}>
@@ -53,9 +63,11 @@ function CharacterSearchBar({ setResults }) {
         <button type="submit">Search</button>
         <input
           placeholder="Search characters..."
-          name={input}
+          value={input}
           onChange={handleChange}
         />
+        <button type="clear" onClick={clearResults}>x</button>
+        
       </div>
     </form>
   );
